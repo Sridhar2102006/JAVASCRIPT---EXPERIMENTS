@@ -51,3 +51,5 @@ No real government database is connected.
 Author
 
 Sridhar V Subramaniam
+
+![alt text](screencapture-127-0-0-1-5500-registration-html-2026-01-09-10_27_56.png)
