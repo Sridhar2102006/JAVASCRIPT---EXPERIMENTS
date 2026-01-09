@@ -75,8 +75,8 @@ input:focus {
 #button:hover {
     background-color: #002244;
 }
-
-/* Result Message Area */
+    
+/* Result Styling */    
 #result {
     margin-top: 20px;
     padding: 15px;
@@ -114,7 +114,10 @@ input:focus {
     <input type="text" id="name" placeholder="Enter Full Name" required><br>
     <!-- <input type="int" onclick="dob()" id="dob" required><br> -->
     <input type="date" id="date"  title="dob"  min="1947-08-15" max="2025-12-31"/><br>
-    <label for="doorNo">Enter aadhar number</label>
+    <label for="phone">Enter phone number</label>
+    <input type="text" id="phone" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Please enter exactly 10 digits" required>
+    <br>
+    <label for="aadh">Enter aadhar number</label>
     <input type="text" id="aadh" pattern="[0-9]{12}" maxlength="12" minlength="12" title="Please enter exactly 12 digits" required>
     <br>
 
@@ -194,6 +197,7 @@ input:focus {
     
     const name = document.getElementById('name').value.trim();
     const dobValue = document.getElementById('date').value;
+    const phone = document.getElementById('phone').value.trim();
     const aadhar = document.getElementById('aadh').value.trim();
     const resultDiv = document.getElementById('result');//////////////
     const doorNo = document.getElementById('doorNo').value;
@@ -217,7 +221,16 @@ input:focus {
         return;
     }
 
+    if(!/^\d{6}$/.test(pincode)){
+        alert("INVALID PINCODE: Pincode must be exactly 6 digits.");
+        return;
+    }
 
+    if (!/^\d{10}$/.test(phone)) {
+        alert("INVALID PHONE: Phone must be exactly 10 digits.");
+        phone.innerHTML = "invalid phone number";
+        return;
+    }
     
     const birthDate = new Date(dobValue);
     const today = new Date();
