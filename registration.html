@@ -101,7 +101,7 @@ input:focus {
     padding: 12px;
     width: 90%;
     border: 1px solid #cccccc;
-    border-radius: 
+    border-radius: 4px;
 }
 
 
@@ -114,6 +114,16 @@ input:focus {
     <input type="text" id="name" placeholder="Enter Full Name" required><br>
     <!-- <input type="int" onclick="dob()" id="dob" required><br> -->
     <input type="date" id="date"  title="dob"  min="1947-08-15" max="2025-12-31"/><br>
+    <br>
+    <label for="phone">Gender</label>
+    <select id="gender" name="gender" title="Select your gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+    <br>
+    <br>
     <label for="phone">Enter phone number</label>
     <input type="text" id="phone" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Please enter exactly 10 digits" required>
     <br>
@@ -193,10 +203,13 @@ input:focus {
     <div id="result"></div>
     </div>
     <Script>
-        function submit() {
+    function submit() {
+
+    
     
     const name = document.getElementById('name').value.trim();
     const dobValue = document.getElementById('date').value;
+    const gender = document.getElementById('gender').value;
     const phone = document.getElementById('phone').value.trim();
     const aadhar = document.getElementById('aadh').value.trim();
     const resultDiv = document.getElementById('result');//////////////
@@ -213,11 +226,13 @@ input:focus {
     if (!name || !dobValue || !aadhar) {
         alert("CRITICAL: All fields (Name, DOB, and Aadhar) are required.");
         resultDiv.innerHTML = ""; // Clear previous results
+        
         return;
     }
 
     if (aadhar.length != 12 || isNaN(aadhar)) {
         alert("INVALID ID: Aadhar must be exactly 12 digits.");
+        
         return;
     }
 
@@ -228,7 +243,7 @@ input:focus {
 
     if (!/^\d{10}$/.test(phone)) {
         alert("INVALID PHONE: Phone must be exactly 10 digits.");
-        phone.innerHTML = "invalid phone number";
+
         return;
     }
     
@@ -245,48 +260,54 @@ input:focus {
 
     let age = today.getFullYear() - birthDate.getFullYear();
     age = age - 1;
-    console.log("age now"+age)
+    console.log("age now"+age);
     
 
     
-    if (age >= 18) {
-        resultDiv.innerHTML = `
-            <p class="eligible">Verification Successful!</p>
-            <p class="eligible">Hello ${name}, Age: ${age}. You are ELIGIBLE to vote.</p>
+        if (age >= 18) {
+            resultDiv.innerHTML = `
+                <p class="eligible">Verification Successful!</p>
+                <p class="eligible">Hello ${name}, Age: ${age}. You are ELIGIBLE to vote.</p>
 
-            <div style="text-align: center; font-size: 14px; line-height: 1.6;">
+                <div style="text-align: center; font-size: 14px; line-height: 1.6;">
 
-                <strong>--- SUBMITTED DETAILS ---</strong>
-                <br>
+                    <strong>--- SUBMITTED DETAILS ---</strong>
+                    <br>
 
-                <strong>Name:</strong> ${name}<br>
+                    <strong>Name:</strong> ${name}<br>
+                    <strong>Gender:</strong> ${gender}<br>
+                    <strong>Phone:</strong> ${phone}<br>
+                    <strong>DOB:</strong> ${dobValue}<br>
 
-                <strong>DOB:</strong> ${dobValue}<br>
+                    <strong>Aadhaar:</strong>
+                    XXXX-XXXX-${aadhar}
+                    <br> 
 
-                <strong>Aadhaar:</strong>
-                 XXXX-XXXX-${aadhar}
-                <br> 
+                    <hr>
 
-                <hr>
+                    <strong>Address:</strong><br>
+                    ${doorNo},
+                    ${premises},
+                    ${street},
+                    ${area},
+                    ${city},
+                    ${state} ,
+                    ${pincode}
 
-                <strong>Address:</strong><br>
-                ${doorNo},
-                ${premises},
-                ${street},
-                ${area},
-                ${city},
-                ${state} ,
-                ${pincode}
+                </div>
+            `;
+        } 
+        else 
+        {
+        
+            resultDiv.innerHTML = `
+                <p class="not-eligible">Verification Failed!</p>
+                <p class="not-eligible">Hello ${name}, Age: ${age}. You are NOT ELIGIBLE to vote.</p>
+            `;
 
-            </div>
-        `;
-    } else {
-        resultDiv.innerHTML = `
-            <p class="not-eligible">Verification Failed.</p>
-            <p class="not-eligible">Sorry ${name}, Age: ${age}. You must be 18 to vote.</p>
-        `;
-    }
+        }
 }
+
 
 
 //${aadhar.slice(-4)} for printing the last four digits of aAAHDRA NUMBER 
