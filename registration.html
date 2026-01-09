@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOTE-ONLINE</title>
+    <style>
+        body {
+    background-color: #f4f7f6; /* Light gray background */
+    margin: 0;
+    font-family: 'Times New Roman', serif; /* Formal font */
+}
+
+#wall {
+    background-color: white;
+    width: 450px;
+    margin: 80px auto;
+    padding: 30px;
+    border-top: 8px solid #003366; /* Deep Govt Blue */
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* National Flag Header Strip */
+#wall::before {
+    content: "";
+    display: block;
+    height: 10px;
+    background: linear-gradient(to right, #FF9933, #FFFFFF, #128807);
+    margin: -30px -30px 20px -30px;
+}
+
+h2 {
+    color: #003366;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 15px;
+    font-size: 22px;
+}
+
+/* Input Styling */
+input {
+    margin: 15px 0;
+    padding: 12px;
+    width: 90%;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fafafa;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #003366;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,51,102,0.2);
+}
+
+/* Button Styling - Official Look */
+#button {
+    background-color: #003366;
+    color: white;
+    width: 95%;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+#button:hover {
+    background-color: #002244;
+}
+
+/* Result Message Area */
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.eligible { 
+    background-color: #d4edda;
+    color: #155724; 
+    border: 1px solid #c3e6cb;
+}
+
+.not-eligible { 
+    background-color: #f8d7da;
+    color: #721c24; 
+    border: 1px solid #f5c6cb;
+}
+
+#state{
+    margin: 10px 0;
+    padding: 12px;
+    width: 90%;
+    border: 1px solid #cccccc;
+    border-radius: 
+}
+
+
+    </style>
+    
+</head>
+<body>
+    <div id="wall">
+        <h2>ONLINE VOTE VERIFIER</h2>
+    <input type="text" id="name" placeholder="Enter Full Name" required><br>
+    <!-- <input type="int" onclick="dob()" id="dob" required><br> -->
+    <input type="date" id="date"  title="dob"  min="1947-08-15" max="2025-12-31"/><br>
+    <label for="doorNo">Enter aadhar number</label>
+    <input type="text" id="aadh" pattern="[0-9]{12}" maxlength="12" minlength="12" title="Please enter exactly 12 digits" required>
+    <br>
+
+    
+        <label for="doorNo">Flat / Room / Door / Block No.*</label>
+        <input type="text" id="doorNo" name="doorNo" required>
+      
+        <label for="premises">Name of Premises / Building / Village*</label>
+        <input type="text" id="premises" name="premises" required>
+      
+        <label for="street">Road / Street / Lane</label>
+        <input type="text" id="street" name="street">
+      
+        <label for="area">Area / Locality / Taluka*</label>
+        <input type="text" id="area" name="area" required>
+      
+        <label for="landmark">Landmark</label>
+        <input type="text" id="landmark" name="landmark">
+      
+        <label for="pincode">Pincode* (6 Digits)</label>
+        <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" maxlength="6" required>
+      
+        <label for="city">Town / City / District*</label>
+        <input type="text" id="city" name="city" required>
+      
+        <label for="state">State / Union Territory*</label>
+        <br>
+        <br>
+        <select id="state" name="state" required>
+          <option value="AP">Andhra Pradesh</option>
+          <option value="AR">Arunachal Pradesh</option>
+          <option value="AS">Assam</option>
+          <option value="BR">Bihar</option>
+          <option value="CG">Chhattisgarh</option>
+          <option value="GA">Goa</option>
+          <option value="GJ">Gujarat</option>
+          <option value="HR">Haryana</option>
+          <option value="HP">Himachal Pradesh</option>
+          <option value="JH">Jharkhand</option>
+          <option value="KA">Karnataka</option>
+          <option value="KL">Kerala</option>
+          <option value="MP">Madhya Pradesh</option>
+          <option value="MH">Maharashtra</option>
+          <option value="MN">Manipur</option>
+          <option value="ML">Meghalaya</option>
+          <option value="MZ">Mizoram</option>
+          <option value="NL">Nagaland</option>
+          <option value="OD">Odisha</option>
+          <option value="PB">Punjab</option>
+          <option value="RJ">Rajasthan</option>
+          <option value="SK">Sikkim</option>
+          <option value="TN">Tamil Nadu</option>
+          <option value="TG">Telangana</option>
+          <option value="TR">Tripura</option>
+          <option value="UP">Uttar Pradesh</option>
+          <option value="UK">Uttarakhand</option>
+          <option value="WB">West Bengal</option>
+          <option value="AN">Andaman and Nicobar Islands</option>
+          <option value="CH">Chandigarh</option>
+          <option value="DN">Dadra and Nagar Haveli and Daman and Diu</option>
+          <option value="DL">Delhi</option>
+          <option value="JK">Jammu and Kashmir</option>
+          <option value="LA">Ladakh</option>
+          <option value="LD">Lakshadweep</option>
+          <option value="PY">Puducherry</option>
+        </select>
+      
+        <button onclick="submit()" id="button">verify</button>
+    
+
+    
+
+    <div id="result"></div>
+    </div>
+    <Script>
+        function submit() {
+    
+    const name = document.getElementById('name').value.trim();
+    const dobValue = document.getElementById('date').value;
+    const aadhar = document.getElementById('aadh').value.trim();
+    const resultDiv = document.getElementById('result');//////////////
+    const doorNo = document.getElementById('doorNo').value;
+    const premises = document.getElementById('premises').value;
+    const street = document.getElementById('street').value;
+    const area = document.getElementById('area').value;
+    const pincode = document.getElementById('pincode').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    
+
+    
+    if (!name || !dobValue || !aadhar) {
+        alert("CRITICAL: All fields (Name, DOB, and Aadhar) are required.");
+        resultDiv.innerHTML = ""; // Clear previous results
+        return;
+    }
+
+    if (aadhar.length != 12 || isNaN(aadhar)) {
+        alert("INVALID ID: Aadhar must be exactly 12 digits.");
+        return;
+    }
+
+
+    
+    const birthDate = new Date(dobValue);
+    const today = new Date();
+
+    console.log(birthDate)
+    console.log(today)
+
+    console.log("current year"+today.getFullYear())
+    console.log("birth year"+birthDate.getFullYear())
+
+
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    age = age - 1;
+    console.log("age now"+age)
+    
+
+    
+    if (age >= 18) {
+        resultDiv.innerHTML = `
+            <p class="eligible">Verification Successful!</p>
+            <p class="eligible">Hello ${name}, Age: ${age}. You are ELIGIBLE to vote.</p>
+
+            <div style="text-align: center; font-size: 14px; line-height: 1.6;">
+
+                <strong>--- SUBMITTED DETAILS ---</strong>
+                <br>
+
+                <strong>Name:</strong> ${name}<br>
+
+                <strong>DOB:</strong> ${dobValue}<br>
+
+                <strong>Aadhaar:</strong>
+                 XXXX-XXXX-${aadhar}
+                <br> 
+
+                <hr>
+
+                <strong>Address:</strong><br>
+                ${doorNo},
+                ${premises},
+                ${street},
+                ${area},
+                ${city},
+                ${state} ,
+                ${pincode}
+
+            </div>
+        `;
+    } else {
+        resultDiv.innerHTML = `
+            <p class="not-eligible">Verification Failed.</p>
+            <p class="not-eligible">Sorry ${name}, Age: ${age}. You must be 18 to vote.</p>
+        `;
+    }
+}
+
+
+//${aadhar.slice(-4)} for printing the last four digits of aAAHDRA NUMBER 
+    </Script>
+    
+</body>
+</html>
